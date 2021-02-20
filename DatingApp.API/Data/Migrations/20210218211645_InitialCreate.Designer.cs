@@ -5,17 +5,31 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DatingApp.API.Migrations
+namespace DatingApp.API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200112180316_InitialCreate")]
+    [Migration("20210218211645_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.0");
+                .HasAnnotation("ProductVersion", "5.0.3");
+
+            modelBuilder.Entity("DatingApp.API.Entities.AppUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
 
             modelBuilder.Entity("DatingApp.API.Models.Value", b =>
                 {

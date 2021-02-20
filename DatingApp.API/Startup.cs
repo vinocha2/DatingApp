@@ -17,17 +17,20 @@ namespace DatingApp.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IConfiguration _config;
+
+        public Startup(IConfiguration config)
         {
-            Configuration = configuration;
+            _config = config;
+            
         }
 
-        public IConfiguration Configuration { get; }
+  
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")) );
+            services.AddDbContext<DataContext>(x => x.UseSqlite(_config.GetConnectionString("DefaultConnection")) );
             services.AddControllers();
             services.AddCors();
         }
@@ -40,7 +43,7 @@ namespace DatingApp.API
                 app.UseDeveloperExceptionPage();
             }
 
-            // app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             app.UseRouting();
