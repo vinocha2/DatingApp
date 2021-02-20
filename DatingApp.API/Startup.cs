@@ -44,9 +44,10 @@ namespace DatingApp.API
             }
 
             app.UseHttpsRedirection();
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-
+            
             app.UseRouting();
+
+            app.UseCors(policy => policy.WithOrigins("https://localhost:4200").AllowAnyHeader().AllowAnyMethod());
 
             app.UseAuthorization();
 

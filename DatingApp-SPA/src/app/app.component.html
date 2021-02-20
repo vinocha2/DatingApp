@@ -4,6 +4,10 @@
 <!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
 
 <div>
-<h1>Dating App</h1>
+<h1>{{title}}</h1>
+
+<ul>
+    <li *ngFor='let user of users'>{{user.id }} - {{user.userName}}</li>
+</ul>
 <app-value></app-value>
 </div>
