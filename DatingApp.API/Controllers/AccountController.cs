@@ -25,7 +25,7 @@ namespace DatingApp.API.Controllers
         {
             if (await UserExists(registerDto.username)) return BadRequest("Username is taken");
             using var hmac = new HMACSHA512();
-            var user = new AppUser
+            var user = new Entities.AppUser
             {
                 UserName = registerDto.username.ToLower(),
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.password)),
