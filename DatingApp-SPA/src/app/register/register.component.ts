@@ -33,7 +33,9 @@ export class RegisterComponent implements OnInit {
       city: ['', Validators.required],
       country: ['', Validators.required],
       password: ['', [Validators.required, 
-        Validators.minLength(4), Validators.maxLength(8)]],
+        Validators.minLength(4), Validators.maxLength(8),
+        this.strong()]
+      ],
       confirmPassword: ['', [Validators.required, this.matchValues('password')]]
     })
   }
@@ -44,6 +46,29 @@ export class RegisterComponent implements OnInit {
         ? null : {isMatching: true}
     }
   }
+
+  strong(): ValidatorFn {
+    return (control: AbstractControl) => {
+      let hasNumber = /\d/.test(control.value);
+      let hasUpper = /[A-Z]/.test(control.value);
+      let hasLower = /[a-z]/.test(control.value);
+      // console.log(control.value);
+      // console.log(hasNumber);
+      // console.log(hasUpper);
+      // console.log(hasLower);
+      // console.log('Num, Upp, Low', hasNumber, hasUpper, hasLower);
+      const valid = hasNumber && hasUpper && hasLower;
+      // console.log("=====");
+      // console.log(valid);
+      if (!valid) {
+        // return what´s not valid
+        return { strong : true };
+      }
+      return null;
+    }
+  }
+
+ 
 
   register() {
     this.accountService.register(this.registerForm.value).subscribe(response => {

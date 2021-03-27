@@ -16,4 +16,7 @@
     <div *ngIf="ngControl.control.errors?.isMatching" class="invalid-feedback">
         Passwords do not match
     </div>
+    <div *ngIf="ngControl.control.errors?.strong" class="invalid-feedback">
+        Passwords must contain one lowercase, uppercase and number
+    </div>
 </div>

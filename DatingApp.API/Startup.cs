@@ -40,7 +40,7 @@ namespace DatingApp.API
             app.UseCors(x => x.AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials()
-                .WithOrigins("https://localhost:4200, https://datingkaro.herokuapp.com"));
+                .WithOrigins("https://localhost:4200/, https://localhost:5001, https://datingkaro.herokuapp.com"));
 
             app.UseAuthentication();
             app.UseAuthorization();
